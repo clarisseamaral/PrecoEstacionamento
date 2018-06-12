@@ -7,10 +7,10 @@ namespace PrecoEstacionamento.Teste
     [TestClass]
     public class TesteCalculoPreco
     {
-        [TestMethod]
-        public void PrecoUmaFracao()
+        [DataRow(2)]
+        [DataTestMethod]
+        public void PrecoUmaFracao(float precoFracao)
         {
-            var precoFracao = 2;
             var calculo = new CalculoPreco(precoFracao);
 
             var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-01 10:15"));
