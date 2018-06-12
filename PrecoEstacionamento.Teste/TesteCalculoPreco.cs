@@ -8,6 +8,8 @@ namespace PrecoEstacionamento.Teste
     public class TesteCalculoPreco
     {
         [DataRow(2)]
+        [DataRow(3.5)]
+        [DataRow(5)]
         [DataTestMethod]
         public void PrecoUmaFracao(float precoFracao)
         {
