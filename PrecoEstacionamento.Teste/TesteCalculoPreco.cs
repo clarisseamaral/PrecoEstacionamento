@@ -15,7 +15,7 @@ namespace PrecoEstacionamento.Teste
         {
             var calculo = new CalculoPreco(precoFracao);
 
-            var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-01 10:15"));
+            var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-10 10:15"));
 
             Assert.AreEqual(precoFracao, valor);
         }
@@ -28,7 +28,7 @@ namespace PrecoEstacionamento.Teste
         {
             var calculo = new CalculoPreco(precoFracao);
 
-            var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-01 11:00"));
+            var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-10 11:00"));
 
             Assert.AreEqual(precoFracao * 4, valor);
         }
