@@ -12,7 +12,7 @@ namespace PrecoEstacionamento.Web.Negocio
         {
         }
 
-        public object CalculaPreco(DateTime entrada, DateTime saida)
+        public float CalculaPreco(DateTime entrada, DateTime saida)
         {
             return 2;
         }
