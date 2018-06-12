@@ -14,7 +14,7 @@ namespace PrecoEstacionamento.Web.Negocio
 
         public object CalculaPreco(DateTime entrada, DateTime saida)
         {
-            throw new NotImplementedException();
+            return 2;
         }
     }
 }
