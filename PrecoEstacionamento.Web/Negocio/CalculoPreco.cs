@@ -17,7 +17,7 @@ namespace PrecoEstacionamento.Web.Negocio
 
         public float CalculaPreco(DateTime entrada, DateTime saida)
         {
-            return _precoFracao;
+            return _precoFracao * (float)(saida - entrada).TotalMinutes / 15f;
         }
     }
 }

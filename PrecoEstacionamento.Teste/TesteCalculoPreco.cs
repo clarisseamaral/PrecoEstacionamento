@@ -7,6 +7,7 @@ namespace PrecoEstacionamento.Teste
     [TestClass]
     public class TesteCalculoPreco
     {
+        // O preço é dado por hora e dividido em frações de 15 minutos.
         [DataRow(2)]
         [DataRow(3.5f)]
         [DataRow(5)]
@@ -20,6 +21,7 @@ namespace PrecoEstacionamento.Teste
             Assert.AreEqual(precoFracao, valor);
         }
 
+        // O preço de uma hora é equivalente ao preço de 4 frações.
         [DataRow(20)]
         [DataRow(2.5f)]
         [DataRow(6)]
