@@ -8,13 +8,16 @@ namespace PrecoEstacionamento.Web.Negocio
 
     public class CalculoPreco
     {
+        private readonly float _precoFracao;
+
         public CalculoPreco(float precoFracao)
         {
+            _precoFracao = precoFracao;
         }
 
         public float CalculaPreco(DateTime entrada, DateTime saida)
         {
-            return 2;
+            return _precoFracao;
         }
     }
 }
