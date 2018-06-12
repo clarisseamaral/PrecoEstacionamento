@@ -48,5 +48,19 @@ namespace PrecoEstacionamento.Teste
 
             Assert.AreEqual(precoFracao * 24, valor);
         }
+
+        // O preço de 4 horas é equivalente ao preço de 16 frações.
+        [DataRow(20)]
+        [DataRow(2.5f)]
+        [DataRow(6)]
+        [DataTestMethod]
+        public void PrecoQuatroHoras(float precoFracao)
+        {
+            var calculo = new CalculoPreco(precoFracao);
+
+            var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-10 14:00"));
+
+            Assert.AreEqual(precoFracao * 16, valor);
+        }
     }
 }
