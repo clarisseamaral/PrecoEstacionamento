@@ -92,5 +92,20 @@ namespace PrecoEstacionamento.Teste
 
             Assert.AreEqual(valorEsperado, valor);
         }
+
+        // O cliente que sai antes de completar 15 minutos não precisa pagar.
+        [DataRow(2, 12)]
+        [DataRow(2.5f, 0)]
+        [DataRow(6, 3)]
+        [DataTestMethod]
+        public void PrecoTempoTolerancica(float precoFracao, int minutos)
+        {
+            var calculo = new CalculoPreco(precoFracao);
+
+            var entrada = DateTime.Parse("2018-03-10 10:00");
+            var valor = calculo.CalculaPreco(entrada, entrada.AddMinutes(minutos));
+
+            Assert.AreEqual(0, valor);
+        }
     }
 }
