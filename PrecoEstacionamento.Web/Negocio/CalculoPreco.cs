@@ -17,10 +17,19 @@ namespace PrecoEstacionamento.Web.Negocio
 
         public float CalculaPreco(DateTime entrada, DateTime saida)
         {
-            var fracoesEstadia = (int)Math.Ceiling((saida - entrada).TotalMinutes / 15f);
+            var minutosEstadia = (saida - entrada).TotalMinutes;
+            if (VerificaTempoTolerancia(minutosEstadia))
+                return 0;
 
+            var fracoesEstadia = (int)Math.Ceiling(minutosEstadia / 15f);
             fracoesEstadia = CalculoPromocao(fracoesEstadia);
+
             return _precoFracao * fracoesEstadia;
+        }
+
+        private bool VerificaTempoTolerancia(double minutosEstadia)
+        {
+            return minutosEstadia < 15;
         }
 
         private static int CalculoPromocao(int fracoesEstadia)
