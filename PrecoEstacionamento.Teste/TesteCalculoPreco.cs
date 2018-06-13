@@ -35,7 +35,7 @@ namespace PrecoEstacionamento.Teste
             Assert.AreEqual(precoFracao * 4, valor);
         }
 
-        // O preço de 6 horas é equivalente ao preço de 24 frações.
+        // O preço de 6 horas é equivalente ao preço de 12 frações (promoção, 1h + 2h).
         [DataRow(20)]
         [DataRow(2.5f)]
         [DataRow(6)]
@@ -46,10 +46,10 @@ namespace PrecoEstacionamento.Teste
 
             var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-10 16:00"));
 
-            Assert.AreEqual(precoFracao * 24, valor);
+            Assert.AreEqual(precoFracao * 12, valor);
         }
 
-        // O preço de 4 horas é equivalente ao preço de 16 frações.
+        // O preço de 4 horas é equivalente ao preço de 4 frações (promoção, 1h).
         [DataRow(20)]
         [DataRow(2.5f)]
         [DataRow(6)]
@@ -60,7 +60,22 @@ namespace PrecoEstacionamento.Teste
 
             var valor = calculo.CalculaPreco(DateTime.Parse("2018-03-10 10:00"), DateTime.Parse("2018-03-10 14:00"));
 
-            Assert.AreEqual(precoFracao * 16, valor);
+            Assert.AreEqual(precoFracao * 4, valor);
+        }
+
+        // O preço de 1h até 4 horas é de apenas 1h (promoção).
+        [DataRow(2, 3)]
+        [DataRow(2.5f, 1.5)]
+        [DataRow(6, 3.89)]
+        [DataTestMethod]
+        public void PrecoHorasPromocao(float precoFracao, double horas)
+        {
+            var calculo = new CalculoPreco(precoFracao);
+
+            var entrada = DateTime.Parse("2018-03-10 10:00");
+            var valor = calculo.CalculaPreco(entrada, entrada.AddHours(horas));
+
+            Assert.AreEqual(precoFracao * 4, valor);
         }
     }
 }
