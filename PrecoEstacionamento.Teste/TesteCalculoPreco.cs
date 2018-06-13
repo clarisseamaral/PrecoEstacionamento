@@ -77,5 +77,20 @@ namespace PrecoEstacionamento.Teste
 
             Assert.AreEqual(precoFracao * 4, valor);
         }
+
+        // Se passou uma fração de hora, deve ser cobrado o valor inteiro da fração do cliente (ex: 35 minutos é pago como 3 frações, 45 minutos).
+        [DataRow(2, 20, 4)]
+        [DataRow(2.5f, 35, 7.5f)]
+        [DataRow(6, 372, 78)] // 6:12
+        [DataTestMethod]
+        public void PrecoFracaoQuebrada(float precoFracao, int minutos, float valorEsperado)
+        {
+            var calculo = new CalculoPreco(precoFracao);
+
+            var entrada = DateTime.Parse("2018-03-10 10:00");
+            var valor = calculo.CalculaPreco(entrada, entrada.AddMinutes(minutos));
+
+            Assert.AreEqual(valorEsperado, valor);
+        }
     }
 }
